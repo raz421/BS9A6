@@ -2,7 +2,7 @@ let Container = document.getElementById("data-container");
 let box = document.getElementById("add-container");
 let Count = document.getElementById("count");
 
-async function Load() {
+async function Load1() {
     let res = await fetch("https://openapi.programming-hero.com/api/retro-forum/posts");
     let data = await res.json();
     console.log(data);
@@ -53,7 +53,7 @@ let display = (data) => {
         Container.appendChild(Div);
     });
 
-    // Attach event listeners to all buttons with class 'push-button'
+    
     let buttons = document.querySelectorAll(".push-button");
     buttons.forEach(button => {
         button.addEventListener("click", (event) => {
@@ -67,7 +67,8 @@ let display = (data) => {
                 value = value + 1;
                 Count.innerText = value;
 
-                let DIV = document.createElement("div");
+                
+                 DIV = document.createElement("div");
                 DIV.classList.add("flex", "gap-3", "w-[230px]");
                 DIV.innerHTML = `
                 <div>${element.title}</div>
@@ -77,13 +78,57 @@ let display = (data) => {
                 `;
                 box.appendChild(DIV);
             } else {
-                console.error("Element not found for index:", index);
+                console.error("Element not found for index:");
             }
         });
     });
 };
 
-Load();
+let Load2=async ()=>{
+    let res=await fetch("https://openapi.programming-hero.com/api/retro-forum/latest-posts")
+    let data=await res.json();
+    display2(data)
+    console.log(data)
+}
+let display2=(data)=>{
+    let l_container=document.getElementById("Latest-container");
+    data.forEach((value)=>{
+        let DIV=document.createElement('div');
+        DIV.classList="card bg-base-100 w-96 p-6 rounded-3xl shadow-xl";
+        DIV.innerHTML=`
+         <figure class="">
+              <img
+                src="${value.cover_image}"
+                class="w-[326px] rounded-2xl" />
+            </figure>
+            <div class="card-body">
+                <div class="flex gap-2 items-center text-gray-400">
+                    <i class="fa-solid fa-calendar"></i>
+                    <p>${value.author.posted_date?value.author.posted_date:"Not published"}</p>
+                </div>
+              <h2 class="mulish-extrabold text-[18px] text-[#12132D]">${value.title}</h2>
+              <p>${value.description}</p>
+              <div class="card-actions ">
+                <div class="flex gap-4 items-center">
+                    <div>
+                        <img src="${value.profile_image}" alt="" class="w-11 rounded-full">
+                    </div>
+                    <div>
+                        <h1 class="mulish-extrabold text-[18px] text-[#12132D]">${value.author.name}</h1>
+                        <h3 class="text-[16px]">${value.author.designation?value.author.designation:"unknown"}</h3>
+                    </div>
+                </div>
+              </div>
+            </div>
+        
+        
+        `
+        l_container.appendChild(DIV)
+    })
+}
+Load2()
+
+Load1();
 
 SearchbtnHandaller = () => {
     // Functionality for search button handler
