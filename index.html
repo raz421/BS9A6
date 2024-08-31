@@ -40,8 +40,8 @@
                     Share your favorite opinion and win and wp <br>forum coffee mug!
                 </p>
                 <label class=" input input-bordered  rounded-full flex items-center gap-2">
-                    <input type="text" class="grow w-[400px] py-[18px] px-5 " placeholder="Search here anything" />
-                    <button class="button rounded-full px-8 py-2  bg-primary text-white mulish-bold text-xl">Search</button>
+                    <input type="text" class="grow w-[400px] py-[18px] px-5 " placeholder="Search here anything" id="INPUT"/>
+                    <button class="button rounded-full px-8 py-2  bg-primary text-white mulish-bold text-xl" onclick="SearchbtnHandaller()">Search</button>
                   </label>
                 
             </div>
@@ -64,11 +64,30 @@
         
       </div>
     </header>
-    <main>
-
+    <main class="max-w-6xl p-8">
+        <div class="flex gap-6">
+            <div class="grid gap-6 "id="data-container">
+            </div>
+            <div class="w-[374px]   rounded-3xl p-6">
+                <div class="flex justify-between">
+                    <h1 class="text-xl mulish-bold">Title</h1>
+                    <h1 class="text-xl mulish-bold">Mark as read <span id="count">0</span></h1>
+                </div>
+                
+                
+                    <div class="p-4 bg-white shadow-xl space-y-5" id="add-container">
+                        
+                           
+                        </div>
+                       
+                    </div>
+                
+        </div>
+          
     </main>
     <footer>
-
+       
     </footer>
+    <script src="js/Utility.js"></script>
 </body>
 </html>
